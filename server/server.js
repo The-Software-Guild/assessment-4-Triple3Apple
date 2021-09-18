@@ -2,12 +2,19 @@ const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
+const mongooseSetup = require('./utils/mongooseSetup');
 const cors = require('cors');
 
+// Models
+const User = require('./models/User.model');
+const Issue = require('./models/Issue.model');
+const Comment = require('./models/Comment.model');
 
+const DB_NAME = 'assessment_four_db';
 
 const PORT = 5000;
 
+const app = express();
 
 app.use(morgan('dev')); // useful logging info
 app.use(express.json(), cors());
@@ -23,14 +30,13 @@ app.use((err, req, res, next) => {
     return res.status(err.statusCode).send(error);
 });
 
+mongooseSetup.connectToDB(DB_NAME);
 
 
 
 // Routes
 
 // ....
-
-
 
 
 app.listen(PORT, () => {
