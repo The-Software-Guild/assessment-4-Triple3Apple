@@ -4,6 +4,8 @@ const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 const mongooseSetup = require('./utils/mongooseSetup');
 const cors = require('cors');
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./graphql/schema');
 
 // Models
 const User = require('./models/User.model');
@@ -26,15 +28,27 @@ app.use((err, req, res, next) => {
     if (err.details[0].message) {
         return res.status(err.statusCode).send(error.details[0].message);
     }
-    // return res.send.status(err.statusCode).send(error);
+
     return res.status(err.statusCode).send(error);
 });
 
+// DB connection
 mongooseSetup.connectToDB(DB_NAME);
 
 
 
 // Routes
+
+// Testing REMOVE THIS
+app.get("/", (req, res) => {
+    return res.json('hello world, go to /graphql to interact with GQL (in-browser tool for writing, validating, and # testing GraphQL queries)');
+});
+
+
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: true
+}))
 
 // ....
 

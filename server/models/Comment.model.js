@@ -2,10 +2,19 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 let commentSchema = new Schema({
-    issueID: String,
-    commentText: String,
-    authorID: String
-});
+    issueID: {
+        type: String,
+        required: true,
+    },
+    commentText: {
+        type: String,
+        required: true,
+    },
+    userID: {
+        type: String,
+        required: true,
+    }
+}, { timestamps: true });
 
 const Comment = mongoose.model('Comment', commentSchema, 'comments');
 
