@@ -6,7 +6,7 @@ let commentSchema = new Schema({
         type: String,
         required: true,
     },
-    commentText: {
+    comment: {
         type: String,
         required: true,
     },

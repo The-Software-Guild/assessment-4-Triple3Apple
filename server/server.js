@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
-    graphiql: true
+    graphiql: true // gives the option to use the graphql interface
 }))
 
 // ....

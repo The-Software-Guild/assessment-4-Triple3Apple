@@ -6,20 +6,20 @@ let issueSchema = new Schema({
         type: String,
         required: true,
     },
-    description: {
+    body: {
         type: String,
         required: true,
     },
     upvotes: {
-        type: String,
+        type: Number,
         required: true,
     },
     downvotes: {
-        type: String,
+        type: Number,
         required: true,
     },
     usersVoted: [String],
-    userID: {
+    authorID: {
         type: String,
         required: true,
     }
