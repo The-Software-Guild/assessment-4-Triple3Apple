@@ -10,6 +10,9 @@ let userSchema = new Schema({
     password: {
         type: String,
         required: true,
+        // password is not returned for security reasons
+        // to get password use: .select('+password') in a mongoose db call
+        select: false
     },
     email: {
         type: String,
