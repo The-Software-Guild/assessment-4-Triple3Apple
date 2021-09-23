@@ -6,7 +6,11 @@ const authenticate = async (req, res, next) => {
 
     // take second header element, if not found return empty string to prevent error with jwt
     // const token = req.headers.authorization?.split(' ')[1] || '';
+    console.log(`req.header:`)
+    console.log(req.headers);
     const token = req.header('Authorization')?.split(' ')[1] || '';
+    console.log(`\n token received: ${token}`);
+    console.log(`\n jwt_token: ${process.env.JWT_TOKEN_SECRET}\n`);
 
     try {
         const verified = jwt.verify(token, process.env.JWT_TOKEN_SECRET);

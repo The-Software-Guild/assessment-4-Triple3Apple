@@ -1,0 +1,112 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+.App {
+	text-align: center;
+}
+
+.nav-bar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	color: black;
+	padding: 2rem;
+	font-size: 1.5rem;
+	background: rgb(144, 144, 144);
+}
+
+.nav-bar > * {
+	margin: 1rem;
+}
+
+/* Login/register styling */
+.login-register-page {
+	position: relative;
+	width: 100vw;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.register-form {
+	width: 40vw;
+	height: 40vh;
+	padding: 1rem;
+	margin: 1rem;
+	background: lightblue;
+}
+
+.login-form {
+	top: 50%;
+	width: 40vw;
+	height: 40vh;
+	padding: 1rem;
+	margin: 1rem;
+	background: lightcyan;
+}
+
+/* Issue Container Styling */
+.issue-container {
+	background: lightgray;
+	margin: 1.25rem 0rem;
+}
+
+.issue-title {
+	font-size: 2rem;
+	padding: 1.5rem;
+	text-decoration: underline;
+}
+.issue-author {
+	font-size: 1.5rem;
+	color: rgb(97, 97, 97);
+}
+.issue-body {
+	padding: 1rem;
+	font-size: 1.75rem;
+}
+
+/*   */
+
+.register-form h1 {
+	font-size: 2.5rem;
+}
+.login-form h1 {
+	font-size: 2.5rem;
+}
+
+.register-form > * {
+	margin: 1rem 0rem;
+	background-color: ;
+}
+
+.login-form > * {
+	margin: 1rem 0rem;
+}
+
+.form-container {
+	margin: 1rem;
+	font-size: 1.5rem;
+}
+
+.comment {
+	margin: 0.5rem;
+	padding: 0.5rem;
+	background: rgb(195, 195, 195);
+}
+
+button {
+	cursor: pointer;
+}
+
+.add-comment-form {
+	margin: 5rem, 0.75rem;
+}
