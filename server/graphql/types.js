@@ -1,8 +1,8 @@
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } = require('graphql');
-const { User } = require('../models/User.model');
-const { Issue } = require('../models/Issue.model');
-const { Comment } = require('../models/Comment.model');
-
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLID } = require('graphql');
+// const { User } = require('../models/User');
+// const { Issue } = require('../models/Issue');
+// const { Comment } = require('../models/Comment');
+const { User, Issue, Comment } = require("../models");
 
 const UserType = new GraphQLObjectType({
     name: 'User',
@@ -25,20 +25,31 @@ const IssueType = new GraphQLObjectType({
         upvotes: { type: GraphQLInt },
         downvotes: { type: GraphQLInt },
         usersVoted: { type: GraphQLList(GraphQLString) },  // Might be a problem??!!
-        authorID: {
+        author: {
             type: UserType,
             resolve(parent, args) {
-                return User.findById(parent.authorID);
-            }
+                console.log('-----------------------------------');
+                console.log(User);
+                return User.findById(parent.authorId)
+            },
         },
+        // author: {
+        //     type: UserType,
+        //     resolve(parent, args) {
+        //         console.log('parent.authorID1: ' + parent.authorID);
+        //         console.log(parent);
+        //         console.log('users:');
+        //         console.log(User.find());
+        //         return User.findById(parent.authorId);
+        //     },
+        // },
         comments: {
             type: GraphQLList(CommentType),
             resolve(parent, args) {
-                return Comment.find({ issueID: parent.id });
-            }
+                return Comment.find({ issueId: parent.id });
+            },
         },
-
-    })
+    }),
 });
 
 const CommentType = new GraphQLObjectType({
@@ -50,16 +61,16 @@ const CommentType = new GraphQLObjectType({
         user: {
             type: UserType,
             resolve(parent, args) {
-                return User.findById(parent.userID);
+                return User.findById(parent.userId);
             }
         },
         issue: {
             type: IssueType,
             resolve(parent, args) {
-                return Issue.findByID(parent.issueID);
-            }
-        }
-    })
+                return Issue.findById(parent.issueId);
+            },
+        },
+    }),
 });
 
 module.exports = { UserType, IssueType, CommentType }
