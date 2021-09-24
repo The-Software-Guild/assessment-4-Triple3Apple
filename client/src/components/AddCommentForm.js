@@ -7,10 +7,7 @@ const AddCommentForm = ({ issueId, addComment }) => {
     const handleAddComment = () => {
 
         if (comment !== '') {
-            console.log('attempting to add comment from add comment form')
-
             addComment(comment, issueId);
-
             resetComment();
         }
     }

@@ -137,7 +137,6 @@ function App() {
     return (
         <ApolloProvider client={client}>
             <div className="App">
-                {/* <BrowserRouter> */}
                 <NavBar isLoggedIn={isLoggedIn} logOut={logOut}></NavBar>
                 <Switch>
                     <Route exact path="/" >
@@ -159,7 +158,6 @@ function App() {
                         <MyIssuesPage isLoggedIn={isLoggedIn} client={client} userId={userId}></MyIssuesPage>
                     </Route>
                 </Switch>
-                {/* </BrowserRouter> */}
             </div>
         </ApolloProvider>
     );

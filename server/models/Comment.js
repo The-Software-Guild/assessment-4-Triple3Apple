@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const { Schema } = mongoose;
+
 
 let commentSchema = new mongoose.Schema({
     issueId: {
@@ -16,7 +16,5 @@ let commentSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-// const Comment = mongoose.model('comment', commentSchema, 'comments');
 
-// module.exports = Comment;
 module.exports = mongoose.model('comment', commentSchema, 'comments');

@@ -1,8 +1,5 @@
 const { GraphQLList, GraphQLID, GraphQLString } = require('graphql');
 const { UserType, IssueType, CommentType } = require('./types');
-// const User = require('../models/User');
-// const Issue = require('../models/Issue');
-// const Comment = require('../models/Comment');
 const { User, Issue, Comment } = require("../models");
 
 // Query that returns all users
@@ -41,11 +38,11 @@ const issue = {
 }
 
 const issuesByUser = {
-    type: new GraphQLList(IssueType),   // NOTE: Don't forget the 'new' for graphqllists !!!
+    type: new GraphQLList(IssueType),   // NOTE: Don't forget the 'new' for graphqllists 
     description: 'Query that returns all issue made by current user',
     resolve(parent, args, { verifiedUser }) {
         console.log('Finding Issues...');
-        // NOTE: find returns an ARRAY!!!!!!!!!
+        // NOTE: find returns an ARRAY
         return Issue.find({ authorId: verifiedUser._id });
     }
 }
@@ -68,12 +65,11 @@ const comment = {
 }
 
 const commentsByUser = {
-    type: new GraphQLList(CommentType),   // NOTE: Don't forget the 'new' for graphqllists !!!
+    type: new GraphQLList(CommentType),   // NOTE: Don't forget the 'new' for graphqllists
     description: 'Query that returns all comments made by a user',
     args: { userId: { type: GraphQLID } },
     resolve(parent, args) {
         console.log('Finding comments...');
-        // NOTE: find returns an ARRAY!!!!!!!!!
         return Comment.find({ userId: args.userId });
     }
 }

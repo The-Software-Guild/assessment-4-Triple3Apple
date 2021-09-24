@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const { Schema } = mongoose;
 
 // Create schema
 let userSchema = new mongoose.Schema(
@@ -26,9 +25,6 @@ let userSchema = new mongoose.Schema(
     { timestamps: true }     // schema option which creates timestamps
 );
 
-// const User = mongoose.model('User', userSchema, 'users');
-
-// module.exports = User;
 
 module.exports = mongoose.model("user", userSchema, "users");
 

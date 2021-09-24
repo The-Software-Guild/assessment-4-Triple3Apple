@@ -2,16 +2,6 @@ import { useEffect } from 'react'
 import { useMutation } from '@apollo/client';
 import { UPDATE_ISSUE } from '../graphql/Mutations';
 
-/* 
-updateIssue(
-issueId: String
-title: String
-body: String
-upvotes: Int
-downvotes: Int
-usersVoted: [String]
-): Issue
-*/
 
 const VoteContainer = ({ upvotes, downvotes, issueId, title, body, usersVoted, issuesQuery, userId }) => {
 

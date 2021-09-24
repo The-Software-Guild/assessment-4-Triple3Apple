@@ -1,60 +1,6 @@
 const { GraphQLString, GraphQLInt, GraphQLList } = require('graphql');
 const { IssueType, CommentType } = require('./types');
-// const User = require('../models/User');
-// const Issue = require('../models/Issue');
-// const Comment = require('../models/Comment');
 const { User, Issue, Comment } = require("../models");
-const { createJwt } = require('../utils/auth');
-const { authenticate } = require('../utils/authVerify');
-
-// const register = {
-//     type: GraphQLString,
-//     description: 'Attempts to register the user and returns the jwt',
-//     args: {
-//         username: { type: GraphQLString },
-//         password: { type: GraphQLString },
-//         email: { type: GraphQLString },
-//     },
-//     // args references the args we get from the request (described above)
-//     async resolve(parent, args) {
-//         const { username, password, email } = args;
-//         const user = new User({ username, password, email });
-
-//         // Add a user document to mongodb
-//         await user.save();
-//         const token = createJwt(user);
-//         return token;
-//     }
-// }
-
-
-// const login = {
-//     type: GraphQLString,
-//     description: 'Attempts to login and returns the jwt',
-//     args: {
-//         email: { type: GraphQLString },
-//         password: { type: GraphQLString },
-//     },
-//     async resolve(parent, args) {
-//         console.log('\nAttempting to login...\n');
-//         // Used find one to return one user not an array
-//         // const user = await User.findOne({ email: args.email }).select('+password');
-//         const user = await User.findOne({ email: args.email }).select("+password");
-//         console.log(user);
-
-//         // TODO: Decrypt password here to compare
-
-//         // Check if password is valid and that user was found with that email
-//         console.log(`user: ${user}, args.password: ${args.password}, user.password: ${user.password}`);
-//         if (!user || args.password !== user.password) {
-//             throw new Error("Invalid credentials");
-//         }
-
-//         const token = createJwt(user);
-//         console.log('\nLogin successful!\n');
-//         return token;
-//     }
-// }
 
 const addIssue = {
     type: IssueType,
@@ -67,8 +13,6 @@ const addIssue = {
     resolve(parent, args, { verifiedUser }) {
 
         console.log('\nAttempting to add issue...\n');
-
-        // console.log('\n Authenticated! \n');
 
         console.log('Verified User: ' + verifiedUser);
         if (!verifiedUser) {
@@ -83,7 +27,6 @@ const addIssue = {
             downvotes: 0,
             usersVoted: [],
         })
-        // console.log(Issue)
 
         return issue.save();
     },
@@ -127,11 +70,10 @@ const updateIssue = {
 
         const issueUpdated = await Issue.findOneAndUpdate(
             {
-                // find issue with these matching
+                // find issue with these matching params
                 _id: args.issueId, authorId: verifiedUser._id
             },
             {
-                // TODO: Check if arguments are null before changing
                 title: args.title,
                 body: args.body,
                 upvotes: args.upvotes,
@@ -157,7 +99,6 @@ const deleteIssue = {
         issueId: { type: GraphQLString }
     },
     async resolve(parent, args, { verifiedUser }) {
-        console.log('attempting to delete issue from resolve');
         const deletedIssue = await Issue.findOneAndDelete(
             {
                 _id: args.issueId, authorId: verifiedUser._id
@@ -171,7 +112,6 @@ const deleteIssue = {
 
         console.log('Issue has been deleted ', deleteIssue.title);
         return deleteIssue;
-        // return 'Issue has been deleted';
     }
 }
 const deleteComment = {
