@@ -8,6 +8,10 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
 
     const { error, loading, data } = useQuery(LOAD_MY_ISSUES);
 
+    if (isLoggedIn === false) {
+        return <Redirect to="/" />
+    }
+
     useEffect(() => {
         if (data) {
             console.log(data);
@@ -28,9 +32,9 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
 
     }, [data]);
 
-    if (isLoggedIn === false) {
-        return <Redirect to="/" />
-    }
+    // if (isLoggedIn === false) {
+    //     return <Redirect to="/" />
+    // }
 
     const refetchMyIssues = (query) => {
         client.refetchQueries({
@@ -43,7 +47,7 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
     if (data) {
         return (
             <div className="issues-page">
-                {
+                {data.issuesByUser.length > 0 ?
                     data.issuesByUser.slice(0).reverse().map((issue) => {
                         return <IssueContainer
                             title={issue.title}
@@ -61,7 +65,8 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
                         // issuesQuery={issuesQuery}
                         ></IssueContainer>
                     })
-                }
+                    : <h2>No Climate Issues</h2>}
+
             </div>
         )
     } else {

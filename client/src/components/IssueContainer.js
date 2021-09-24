@@ -40,14 +40,17 @@ const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, u
     return (
         <div className="issue-container">
             <div className="title-container">
-                <h3 className="issue-title">{title}</h3>
-                {
-                    canDelete === true &&
-                    <DeleteIssueButton
-                        issuesQuery={myIssuesQuery}
-                        id={id}
-                    />
-                }
+                <div className="issue-title-container">
+                    <h3 className="issue-title">{title}</h3>
+                    {
+                        canDelete === true &&
+                        <DeleteIssueButton
+                            issuesQuery={myIssuesQuery}
+                            id={id}
+                        />
+                    }
+                </div>
+
             </div>
 
             <h5 className="issue-author">By: {authorUsername}</h5>
@@ -71,27 +74,10 @@ const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, u
                     usersVoted={usersVoted}
                     userId={userId}
                     issuesQuery={myIssuesQuery} />}
-            {/* <VoteContainer
-                issueId={id}
-                upvotes={upvotes}
-                downvotes={downvotes}
-                title={title}
-                body={body}
-                usersVoted={usersVoted}
-                userId={userId}
-                issuesQuery={issuesQuery} /> */}
-            {/* <div className="votes-container">
-                <div className="upvotes-container">
-                    <button>👍</button>
-                    <h5 className="vote-count upvote">{upvotes}</h5>
-                </div>
-                <div className="downvotes-container">
-                    <button>👎</button>
-                    <h5 className="vote-count downvote">{downvotes}</h5>
-                </div>
-            </div> */}
             <AddCommentForm issueId={id} addComment={createComment}></AddCommentForm>
             <div className="comments">
+                {comments.length > 0 && <h3>Comments</h3>}
+
                 {comments.slice(0).reverse().map((comment, i) => {
                     return (
                         <div key={i}>

@@ -11,6 +11,10 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
 
     const { issues, setIssues } = useState([]);
 
+    if (isLoggedIn === false) {
+        return <Redirect to="/" />
+    }
+
     useEffect(() => {
         if (data && issues) {
             console.log(data.issues);
@@ -45,24 +49,27 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
     if (data) {
         return (
             <div className="issues-page">
-                {
-                    data.issues.slice(0).reverse().map((issue) => {
-                        return <IssueContainer
-                            title={issue.title}
-                            authorUsername={issue.author === null ? 'unknown' : issue.author.username}
-                            body={issue.body}
-                            id={issue.id}
-                            upvotes={issue.upvotes}
-                            downvotes={issue.downvotes}
-                            usersVoted={issue.usersVoted}
-                            comments={issue.comments}
-                            issuesQuery={LOAD_ISSUES}
-                            canDelete={false}
-                            userId={userId}
-                        // issuesQuery={issuesQuery}
-                        ></IssueContainer>
-                    })
-                }
+                <div className="issues-container">
+                    {
+                        data.issues.slice(0).reverse().map((issue) => {
+                            return <IssueContainer
+                                title={issue.title}
+                                authorUsername={issue.author === null ? 'unknown' : issue.author.username}
+                                body={issue.body}
+                                id={issue.id}
+                                upvotes={issue.upvotes}
+                                downvotes={issue.downvotes}
+                                usersVoted={issue.usersVoted}
+                                comments={issue.comments}
+                                issuesQuery={LOAD_ISSUES}
+                                canDelete={false}
+                                userId={userId}
+                            // issuesQuery={issuesQuery}
+                            ></IssueContainer>
+                        })
+                    }
+                </div>
+
             </div>
         )
     } else {

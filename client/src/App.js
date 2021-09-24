@@ -19,6 +19,7 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
     }
 });
 
+
 const link = from([
     errorLink,
     new HttpLink({ uri: '/graphql' })
@@ -50,10 +51,14 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const [userId, setUserId] = useState('');
+    const [registerErrorMsg, setRegisterErrorMsg] = useState("");
+    const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
     useEffect(() => {
         localStorage.setItem('jwt_token', '');
         setUserId('');
+        setRegisterErrorMsg('');
+        setLoginErrorMsg('');
     }, []);
 
     const registerUser = (username, email, password) => {
@@ -72,11 +77,15 @@ function App() {
                 localStorage.setItem('jwt_token', res.data.token);
                 console.log(res.data.status);
                 setIsLoggedIn(true);
+                resetRegisterErrorMsg();
                 history.push('/main');
             })
             .catch((error) => {
+                console.log('returning error msg....');
+                setRegisterErrorMsg('Invalid username/email');
                 console.log(error);
                 setIsLoggedIn(false);
+
             });
 
     }
@@ -97,13 +106,16 @@ function App() {
                 localStorage.setItem('jwt_token', res.data.token);
                 console.log(res.data.status);
                 console.log('LOG IN SUCCESS');
+                resetLoginErrorMsg();
                 setIsLoggedIn(true);
                 history.push('/main');
             })
             .catch((error) => {
                 console.log(error);
                 console.log('LOG IN FAIL');
+                setLoginErrorMsg('Invalid username/email');
                 setIsLoggedIn(false);
+                return error;
             });
 
         setIsLoggedIn(true);
@@ -115,6 +127,13 @@ function App() {
         localStorage.setItem('jwt_token', '');
     }
 
+    const resetRegisterErrorMsg = () => {
+        setRegisterErrorMsg('');
+    }
+    const resetLoginErrorMsg = () => {
+        setLoginErrorMsg('');
+    }
+
     return (
         <ApolloProvider client={client}>
             <div className="App">
@@ -124,7 +143,10 @@ function App() {
                     <Route exact path="/" >
                         <LoginRegisterPage
                             loginUser={loginUser}
-                            registerUser={registerUser}>
+                            registerUser={registerUser}
+                            registerErrorMsg={registerErrorMsg}
+                            loginErrorMsg={loginErrorMsg}
+                        >
                         </LoginRegisterPage>
                     </Route>
                     <Route exact path="/main">

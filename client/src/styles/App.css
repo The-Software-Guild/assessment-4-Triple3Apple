@@ -6,6 +6,8 @@
 
 html {
 	font-size: 62.5%;
+	height: 100%;
+	background: green;
 }
 
 .App {
@@ -29,29 +31,50 @@ html {
 
 /* Login/register styling */
 .login-register-page {
+	font-family: "Roboto", sans-serif;
 	position: relative;
 	width: 100vw;
+	height: 100%;
 	display: flex;
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: center;
+	background: green;
+}
+
+.register-form,
+.login-form {
+	height: fit-content;
+	background: #ffffff;
 }
 
 .register-form {
 	width: 40vw;
-	height: 40vh;
+	/* height: 40vh; */
 	padding: 1rem;
 	margin: 1rem;
-	background: lightblue;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form-container input {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #e9e9e9cc;
+	width: 100%;
+	border: 0;
+	margin: 0 0 1rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	font-size: 14px;
 }
 
 .login-form {
 	top: 50%;
 	width: 40vw;
-	height: 40vh;
+	/* height: 40vh; */
 	padding: 1rem;
 	margin: 1rem;
-	background: lightcyan;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 /* Issue Container Styling */
@@ -74,7 +97,7 @@ html {
 	font-size: 1.75rem;
 }
 
-/*   */
+/* Login / register form  */
 
 .register-form h1 {
 	font-size: 2.5rem;
@@ -85,7 +108,6 @@ html {
 
 .register-form > * {
 	margin: 1rem 0rem;
-	background-color: ;
 }
 
 .login-form > * {
@@ -95,6 +117,29 @@ html {
 .form-container {
 	margin: 1rem;
 	font-size: 1.5rem;
+}
+
+.btn-container {
+	margin: 1rem;
+}
+
+.submit-btn {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background-color: #4caf50;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #ffffff;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.submit-btn:hover {
+	background-color: #439b46;
 }
 
 .comment {
@@ -109,4 +154,84 @@ button {
 
 .add-comment-form {
 	margin: 5rem, 0.75rem;
+}
+
+/* issue styling */
+
+.issues-page {
+	display: flex;
+	/* align-items: center; */
+	justify-content: center;
+}
+
+.issue-container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	align-items: center;
+	margin: 3rem;
+	padding: 2rem;
+	width: 70vw;
+	height: fit-content;
+	background: white;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.issues-container {
+	background: green;
+}
+
+/* Vote Container */
+
+.votes-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.upvotes-container,
+.downvotes-container {
+	margin: 0.5rem;
+}
+
+.issue-title-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.add-issue-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#add-issue-form {
+}
+
+#add-issue-form h1 {
+	padding: 2rem;
+	color: white;
+}
+
+#add-issue-form input {
+	width: 50rem;
+}
+
+.add-issue-btn {
+	background: lightgreen;
+	color: black;
+}
+
+.add-issue-btn:hover {
+	background: rgb(132, 212, 132);
+}
+
+.login-register-page {
+	transform: translateY(20vh);
+}
+
+.error-text {
+	padding-top: 0.5rem;
+	color: red;
+	font-size: 1.75rem;
 }
