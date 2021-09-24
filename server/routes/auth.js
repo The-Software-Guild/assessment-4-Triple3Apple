@@ -51,7 +51,6 @@ router.post('/register', async (req, res, next) => {
 
                 const token = createJwt(user);
                 return res.status(200).send({ status: "User Registered", token: token, user: savedUser });
-                // return res.status(200).send({ status: "Login Successful", token: token, user: userNoPass });
             }
 
         } catch (error) {
@@ -84,11 +83,6 @@ router.post('/login', async (req, res, next) => {
         console.log('\Login failed, invalid credentials\n');
         return res.status(401).send('Invalid credentials');
     }
-    // if (!user || req.body.password !== user.password) {
-    //     // throw new Error("Invalid credentials");
-    //     console.log('\Login failed, invalid credentials\n');
-    //     return res.status(401).send('Invalid credentials');
-    // }
 
     const token = createJwt(user);
     console.log('\nLogin Successful!\n');

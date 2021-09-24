@@ -40,29 +40,30 @@ const AddIssuePage = ({ isLoggedIn }) => {
 
         <div className="add-issue-page">
             <form id="add-issue-form" onSubmit={(e) => handleAddIssue(e)}>
+                <h1>Add a Issue</h1>
                 <div className="form-container">
-                    <h3>Issue Title: </h3>
                     <input
                         type="text"
                         id="title-input"
                         value={title}
                         minLength="1"
+                        placeholder="issue title"
                         required
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
                 <div className="form-container">
-                    <h3>Post Details: </h3>
                     <input
                         type="text"
                         id="post-details-input"
                         value={postDetails}
                         minLength="1"
+                        placeholder="issue info"
                         required
                         onChange={(e) => setPostDetails(e.target.value)}
                     />
                 </div>
-                <input type="submit" value="Create Issue" />
+                <input className="submit-btn add-issue-btn" type="submit" value="Create Issue" />
             </form>
         </div>
     )

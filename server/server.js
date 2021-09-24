@@ -23,23 +23,6 @@ app.use(express.json());
 // DB connection
 mongooseSetup.connectToDB(DB_NAME);
 
-
-
-// Global Error Handler
-// app.use((err, req, res, next) => {
-//     err.statusCode = err.statusCode || 500;
-//     err.status = err.status || 'error';
-//     if (err.details[0].message) {
-//         return res.status(err.statusCode).send(error.details[0].message);
-//     }
-
-//     return res.status(err.statusCode).send(error);
-// });
-
-
-
-
-
 // Routes
 app.use('/auth', authRoute);
 
@@ -61,9 +44,6 @@ app.use(
         graphiql: true,
     })
 )
-
-// ....
-
 
 app.listen(PORT, () => {
     console.log("Server for Assessment4 (Climate Action 101) is running on port: " + PORT);
