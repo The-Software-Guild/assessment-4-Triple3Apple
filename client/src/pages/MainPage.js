@@ -36,21 +36,23 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
             <div className="issues-page">
                 <div className="issues-container">
                     {
-                        data.issues.slice(0).reverse().map((issue) => {
-                            return <IssueContainer
-                                title={issue.title}
-                                authorUsername={issue.author === null ? 'unknown' : issue.author.username}
-                                body={issue.body}
-                                id={issue.id}
-                                upvotes={issue.upvotes}
-                                downvotes={issue.downvotes}
-                                usersVoted={issue.usersVoted}
-                                comments={issue.comments}
-                                issuesQuery={LOAD_ISSUES}
-                                canDelete={false}
-                                userId={userId}
-                            ></IssueContainer>
-                        })
+                        data.issuesByUser.length > 0 ?
+                            data.issues.slice(0).reverse().map((issue) => {
+                                return <IssueContainer
+                                    title={issue.title}
+                                    authorUsername={issue.author === null ? 'unknown' : issue.author.username}
+                                    body={issue.body}
+                                    id={issue.id}
+                                    upvotes={issue.upvotes}
+                                    downvotes={issue.downvotes}
+                                    usersVoted={issue.usersVoted}
+                                    comments={issue.comments}
+                                    issuesQuery={LOAD_ISSUES}
+                                    canDelete={false}
+                                    userId={userId}
+                                ></IssueContainer>
+                            })
+                            : <h2>No Climate Issues</h2>
                     }
                 </div>
 
@@ -58,7 +60,6 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
         )
     } else {
         return (<h2>Loading..</h2>)
-
     }
 
 }
