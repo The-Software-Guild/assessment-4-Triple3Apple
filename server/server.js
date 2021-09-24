@@ -53,22 +53,6 @@ app.get("/", (req, res) => {
 // Middleware to authenticate-------------------------------------
 app.use(authenticate);
 
-// // Testing
-// app.get('/authTest', (req, res) => {
-//     return res.json(
-//         createJwt({
-//             username: 'john',
-//             password: '1234',
-//             email: 'john@gmail.com'
-//         })
-//     );
-// });
-
-
-// app.use('/graphql', graphqlHTTP({
-//     schema: schema,
-//     graphiql: true // gives the option to use the graphql interface
-// }));
 
 app.use(
     "/graphql",
