@@ -17,10 +17,9 @@ const users = {
 // Query that returns one user
 const user = {
     type: UserType,
-    description: "Retrieves one user by id",
-    args: { id: { type: GraphQLID } },
-    resolve(parent, args) {
-        return User.findById(args.id);
+    description: "Retrieves current user",
+    resolve(parent, args, { verifiedUser }) {
+        return User.findById(verifiedUser._id);
     },
 }
 
@@ -43,12 +42,11 @@ const issue = {
 
 const issuesByUser = {
     type: new GraphQLList(IssueType),   // NOTE: Don't forget the 'new' for graphqllists !!!
-    description: 'Query that returns all issue made by a user',
-    args: { userId: { type: GraphQLID } },
-    resolve(parent, args) {
+    description: 'Query that returns all issue made by current user',
+    resolve(parent, args, { verifiedUser }) {
         console.log('Finding Issues...');
         // NOTE: find returns an ARRAY!!!!!!!!!
-        return Issue.find({ authorId: args.userId });
+        return Issue.find({ authorId: verifiedUser._id });
     }
 }
 

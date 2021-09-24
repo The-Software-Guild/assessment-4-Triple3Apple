@@ -4,29 +4,49 @@ import { useQuery, gql } from '@apollo/client';
 import { LOAD_ISSUES } from '../graphql/Queries';
 import IssueContainer from '../components/IssueContainer';
 
-const MainPage = ({ isLoggedIn }) => {
+// Passed client via props for re-rendering.
+const MainPage = ({ isLoggedIn, issuesData, client }) => {
 
     const { error, loading, data } = useQuery(LOAD_ISSUES);
 
     const { issues, setIssues } = useState([]);
 
     useEffect(() => {
-        if (data) {
+        if (data && issues) {
             console.log(data.issues);
-            //setIssues(data.issues);
+            // setIssues(data.issues);
+
         }
 
     }, [data]);
 
+    // rerender & refetch queries when component loaded
+    useEffect(() => {
+        console.log('on main page');
+
+        refetchIssues(LOAD_ISSUES);
+        // client.refetchQueries({
+        //     include: [LOAD_ISSUES],
+        // });
+
+    }, []);
+
+
     if (isLoggedIn === false) {
         return <Redirect to="/" />
+    }
+
+    const refetchIssues = (query) => {
+        client.refetchQueries({
+            include: [query],
+        });
     }
 
     if (data) {
         return (
             <div className="issues-page">
                 {
-                    data.issues.map((issue) => {
+                    data.issues.slice(0).reverse().map((issue) => {
                         return <IssueContainer
                             title={issue.title}
                             authorUsername={issue.author === null ? 'unknown' : issue.author.username}
@@ -36,11 +56,12 @@ const MainPage = ({ isLoggedIn }) => {
                             downvotes={issue.downvotes}
                             usersVoted={issue.usersVoted}
                             comments={issue.comments}
-                            refetchQuery={LOAD_ISSUES}
+                            issuesQuery={LOAD_ISSUES}
+                            canDelete={false}
+                        // issuesQuery={issuesQuery}
                         ></IssueContainer>
                     })
                 }
-
             </div>
         )
     } else {

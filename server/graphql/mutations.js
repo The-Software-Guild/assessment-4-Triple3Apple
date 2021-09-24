@@ -102,6 +102,7 @@ const addComment = {
             comment: args.comment,
             userId: verifiedUser._id
         });
+        console.log('adding new comment from mutations.js (server)');
         console.log(comment);
 
         return comment.save();
@@ -146,12 +147,13 @@ const updateIssue = {
 }
 
 const deleteIssue = {
-    type: GraphQLString,
+    type: IssueType,
     description: "Delete an issue from the database",
     args: {
         issueId: { type: GraphQLString }
     },
     async resolve(parent, args, { verifiedUser }) {
+        console.log('attempting to delete issue from resolve');
         const deletedIssue = await Issue.findOneAndDelete(
             {
                 _id: args.issueId, authorId: verifiedUser._id
@@ -163,8 +165,9 @@ const deleteIssue = {
             throw new Error("Can't find issue to delete");
         }
 
-        console.log('Issue has been deleted');
-        return 'Issue has been deleted';
+        console.log('Issue has been deleted ', deleteIssue.title);
+        return deleteIssue;
+        // return 'Issue has been deleted';
     }
 }
 const deleteComment = {
