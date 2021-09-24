@@ -63,7 +63,7 @@ const updateIssue = {
         downvotes: { type: GraphQLInt },
         usersVoted: { type: GraphQLList(GraphQLString) }
     },
-    async resolve(parent, args, { verifiedUser }) {
+    async resolve(parent, args) {
 
         console.log('upvotes recieved in resolve ' + args.upvotes);
         console.log('downvotes recieved in resolve ' + args.downvotes);
@@ -71,7 +71,7 @@ const updateIssue = {
         const issueUpdated = await Issue.findOneAndUpdate(
             {
                 // find issue with these matching params
-                _id: args.issueId, authorId: verifiedUser._id
+                _id: args.issueId
             },
             {
                 title: args.title,

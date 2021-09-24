@@ -36,7 +36,7 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
             <div className="issues-page">
                 <div className="issues-container">
                     {
-                        data.issuesByUser.length > 0 ?
+                        data.issues.length > 0 ?
                             data.issues.slice(0).reverse().map((issue) => {
                                 return <IssueContainer
                                     title={issue.title}
