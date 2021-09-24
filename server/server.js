@@ -3,7 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 // const mongoose = require('mongoose');
 const mongooseSetup = require('./utils/mongooseSetup');
-// const cors = require('cors');
+const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./graphql/schema');
 // const { createJwt } = require('./utils/auth');
@@ -53,22 +53,6 @@ app.get("/", (req, res) => {
 // Middleware to authenticate-------------------------------------
 app.use(authenticate);
 
-// // Testing
-// app.get('/authTest', (req, res) => {
-//     return res.json(
-//         createJwt({
-//             username: 'john',
-//             password: '1234',
-//             email: 'john@gmail.com'
-//         })
-//     );
-// });
-
-
-// app.use('/graphql', graphqlHTTP({
-//     schema: schema,
-//     graphiql: true // gives the option to use the graphql interface
-// }));
 
 app.use(
     "/graphql",
