@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const { Schema } = mongoose;
+
 
 let issueSchema = new mongoose.Schema(
     {
@@ -20,7 +20,7 @@ let issueSchema = new mongoose.Schema(
             required: true,
         },
         usersVoted: {
-            type: [String], // maybe error, before: just -->  [String]
+            type: [String],
             required: true,
         },
         authorId: {
@@ -30,9 +30,5 @@ let issueSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-
-// const Issue = mongoose.model('Issue', issueSchema, 'issues');
-
-// module.exports = Issue;
 
 module.exports = mongoose.model('issue', issueSchema, 'issues');

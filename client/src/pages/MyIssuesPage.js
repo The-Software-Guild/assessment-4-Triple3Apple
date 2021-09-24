@@ -32,17 +32,11 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
 
     }, [data]);
 
-    // if (isLoggedIn === false) {
-    //     return <Redirect to="/" />
-    // }
-
     const refetchMyIssues = (query) => {
         client.refetchQueries({
             include: [query],
         });
     }
-
-
 
     if (data) {
         return (
@@ -58,11 +52,9 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
                             downvotes={issue.downvotes}
                             usersVoted={issue.usersVoted}
                             comments={issue.comments}
-                            // issuesQuery={LOAD_MY_ISSUES}
                             myIssuesQuery={LOAD_MY_ISSUES}
                             canDelete={true}
                             userId={userId}
-                        // issuesQuery={issuesQuery}
                         ></IssueContainer>
                     })
                     : <h2>No Climate Issues</h2>}
@@ -71,7 +63,7 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
         )
     } else {
         return (
-            <div>Loading</div>
+            <div>Loading...</div>
         )
     }
 }

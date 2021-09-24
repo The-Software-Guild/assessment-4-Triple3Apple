@@ -8,11 +8,7 @@ const RegisterForm = ({ registerUser, registerErrorMsg }) => {
 
     const handleRegisterUser = (e) => {
         e.preventDefault();
-
         registerUser(username, email, password);
-
-        console.log(registerErrorMsg);
-
         resetUseStates();
     }
 
@@ -60,9 +56,6 @@ const RegisterForm = ({ registerUser, registerErrorMsg }) => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-
-
-                {/* <input type="submit" value="Register" /> */}
 
                 <div className="btn-container">
                     <input className="submit-btn" type="submit" value="Register" />

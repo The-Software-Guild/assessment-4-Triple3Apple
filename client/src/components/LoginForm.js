@@ -2,20 +2,16 @@ import { useState } from "react";
 
 const LoginForm = ({ loginUser, loginErrorMsg }) => {
 
-    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleLoginUser = (e) => {
         e.preventDefault();
-
         loginUser(email, password);
-
         resetUseStates();
     }
 
     const resetUseStates = () => {
-        setUsername("");
         setEmail("");
         setPassword("");
     };
@@ -38,7 +34,6 @@ const LoginForm = ({ loginUser, loginErrorMsg }) => {
                     />
                 </div>
                 <div className="form-container">
-                    {/* <h3>Password: </h3> */}
                     <input
                         type="text"
                         id="password-input"

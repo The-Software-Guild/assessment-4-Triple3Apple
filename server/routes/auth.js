@@ -54,7 +54,7 @@ router.post('/register', async (req, res, next) => {
             }
 
         } catch (error) {
-            console.log('encountered error');
+            console.log('Encountered ERROR while registering user...');
             console.log(error);
             return next(error);
         }
@@ -79,7 +79,6 @@ router.post('/login', async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email }).select("+password");
 
     if (!user || (await bcrypt.compare(req.body.password, user.password)) == false) {
-        // throw new Error("Invalid credentials");
         console.log('\Login failed, invalid credentials\n');
         return res.status(401).send('Invalid credentials');
     }
@@ -93,7 +92,6 @@ router.post('/login', async (req, res, next) => {
 
 const isRegisterInfoValid = async (username, email) => {
     let isValid = false;
-
     const usernameExists = await User.findOne({ username: username });
     const emailExists = await User.findOne({ email: email });
 

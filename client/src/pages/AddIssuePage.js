@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Redirect, Route } from "react-router";
+import { Redirect } from "react-router";
 import { useMutation } from '@apollo/client';
 import { CREATE_ISSUE } from '../graphql/Mutations';
 
@@ -17,14 +17,11 @@ const AddIssuePage = ({ isLoggedIn }) => {
     const handleAddIssue = (e) => {
         e.preventDefault();
 
-        // create new issue
-        // createNewIssue(title, postDetails);
         addIssue({
             variables: {
                 title: title,
                 body: postDetails
             },
-            // refetchQueries: [{ query: issuesQuery }]
         });
 
 

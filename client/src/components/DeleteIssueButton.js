@@ -15,7 +15,6 @@ const DeleteIssueButton = ({ issuesQuery, id }) => {
             },
             refetchQueries: [{ query: issuesQuery }]
         });
-
     }
 
     return (

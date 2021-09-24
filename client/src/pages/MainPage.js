@@ -9,30 +9,15 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
 
     const { error, loading, data } = useQuery(LOAD_ISSUES);
 
-    const { issues, setIssues } = useState([]);
-
     if (isLoggedIn === false) {
         return <Redirect to="/" />
     }
 
-    useEffect(() => {
-        if (data && issues) {
-            console.log(data.issues);
-            // setIssues(data.issues);
-
-        }
-
-    }, [data]);
-
     // rerender & refetch queries when component loaded
     useEffect(() => {
-        console.log('on main page');
+        console.log('On main page');
 
         refetchIssues(LOAD_ISSUES);
-        // client.refetchQueries({
-        //     include: [LOAD_ISSUES],
-        // });
-
     }, []);
 
 
@@ -64,7 +49,6 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
                                 issuesQuery={LOAD_ISSUES}
                                 canDelete={false}
                                 userId={userId}
-                            // issuesQuery={issuesQuery}
                             ></IssueContainer>
                         })
                     }
@@ -73,19 +57,10 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
             </div>
         )
     } else {
-        <h2>Loading..</h2>
+        return (<h2>Loading..</h2>)
+
     }
 
-    return (
-        <div className="issues-page">
-            <h3>This is the main page showing all the issues</h3>
-            {/* {(data.issues) &&
-                data.issues.map((issue) => {
-                    return <IssueContainer title={issue.title}></IssueContainer>
-                })
-            } */}
-        </div>
-    )
 }
 
 export default MainPage

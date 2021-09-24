@@ -33,16 +33,7 @@ const IssueType = new GraphQLObjectType({
                 return User.findById(parent.authorId)
             },
         },
-        // author: {
-        //     type: UserType,
-        //     resolve(parent, args) {
-        //         console.log('parent.authorID1: ' + parent.authorID);
-        //         console.log(parent);
-        //         console.log('users:');
-        //         console.log(User.find());
-        //         return User.findById(parent.authorId);
-        //     },
-        // },
+
         comments: {
             type: GraphQLList(CommentType),
             resolve(parent, args) {

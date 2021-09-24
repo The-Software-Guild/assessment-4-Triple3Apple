@@ -3,20 +3,13 @@ import AddCommentForm from './AddCommentForm';
 import Comment from './Comment';
 import DeleteIssueButton from './DeleteIssueButton';
 import VoteContainer from './VoteContainer';
-// import { CREATE_COMMENT } from '../graphql/Mutations'
-// import { gql } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { CREATE_COMMENT } from '../graphql/Mutations';
-
-// const { GraphQLString, GraphQLInt, GraphQLList } = require('graphql');
-
 
 
 const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, usersVoted, comments, issuesQuery, myIssuesQuery, userId, canDelete }) => {
 
-    //const [addComment, { error }] = useMutation(CREATE_COMMENT);
     const [addComment, { data, loading, error }] = useMutation(CREATE_COMMENT);
-    // const [deleteIssue, { data: deleteData, loading, error }] = useMutation(DELETE_COMMENT);
 
     const createComment = (comment, issueId) => {
         console.log(comment);
@@ -34,9 +27,6 @@ const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, u
 
     }
 
-
-
-    // TODO: Implement delete functionality
     return (
         <div className="issue-container">
             <div className="title-container">
@@ -50,7 +40,6 @@ const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, u
                         />
                     }
                 </div>
-
             </div>
 
             <h5 className="issue-author">By: {authorUsername}</h5>
