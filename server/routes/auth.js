@@ -45,8 +45,13 @@ router.post('/register', async (req, res, next) => {
             } else {
                 // register user & send jwt token
                 await user.save();
+
+                // get user after saving into db in order to get its _id
+                const savedUser = await User.findOne({ email: req.body.email }).select("+password");
+
                 const token = createJwt(user);
-                return res.status(200).send({ status: "User Registered", token: token });
+                return res.status(200).send({ status: "User Registered", token: token, user: savedUser });
+                // return res.status(200).send({ status: "Login Successful", token: token, user: userNoPass });
             }
 
         } catch (error) {

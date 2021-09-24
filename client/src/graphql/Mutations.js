@@ -28,3 +28,17 @@ export const DELETE_ISSUE = gql`
         }
     }
 `
+
+
+export const UPDATE_ISSUE = gql`
+    mutation updateIssue($issueId: String! $title: String! $body: String! $upvotes: Int! $downvotes: Int! $usersVoted: [String]!) {
+        updateIssue(issueId: $issueId, title: $title, body: $body, upvotes: $upvotes, downvotes: $downvotes, usersVoted: $usersVoted) {
+            id
+            title
+            body
+            upvotes
+            downvotes
+            usersVoted
+        }
+    }
+`

@@ -12,7 +12,7 @@ import { CREATE_COMMENT } from '../graphql/Mutations';
 
 
 
-const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, usersVoted, comments, issuesQuery, myIssuesQuery, canDelete }) => {
+const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, usersVoted, comments, issuesQuery, myIssuesQuery, userId, canDelete }) => {
 
     //const [addComment, { error }] = useMutation(CREATE_COMMENT);
     const [addComment, { data, loading, error }] = useMutation(CREATE_COMMENT);
@@ -41,12 +41,45 @@ const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, u
         <div className="issue-container">
             <div className="title-container">
                 <h3 className="issue-title">{title}</h3>
-                {canDelete === true && <DeleteIssueButton issuesQuery={myIssuesQuery} id={id} />}
+                {
+                    canDelete === true &&
+                    <DeleteIssueButton
+                        issuesQuery={myIssuesQuery}
+                        id={id}
+                    />
+                }
             </div>
 
             <h5 className="issue-author">By: {authorUsername}</h5>
             <h5 className="issue-body">{body}</h5>
-            <VoteContainer upvotes={upvotes} downvotes={downvotes} />
+            {canDelete === true ? <VoteContainer
+                issueId={id}
+                upvotes={upvotes}
+                downvotes={downvotes}
+                title={title}
+                body={body}
+                usersVoted={usersVoted}
+                userId={userId}
+                issuesQuery={issuesQuery} />
+                :
+                <VoteContainer
+                    issueId={id}
+                    upvotes={upvotes}
+                    downvotes={downvotes}
+                    title={title}
+                    body={body}
+                    usersVoted={usersVoted}
+                    userId={userId}
+                    issuesQuery={myIssuesQuery} />}
+            {/* <VoteContainer
+                issueId={id}
+                upvotes={upvotes}
+                downvotes={downvotes}
+                title={title}
+                body={body}
+                usersVoted={usersVoted}
+                userId={userId}
+                issuesQuery={issuesQuery} /> */}
             {/* <div className="votes-container">
                 <div className="upvotes-container">
                     <button>👍</button>

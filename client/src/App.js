@@ -49,8 +49,11 @@ function App() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    const [userId, setUserId] = useState('');
+
     useEffect(() => {
         localStorage.setItem('jwt_token', '');
+        setUserId('');
     }, []);
 
     const registerUser = (username, email, password) => {
@@ -60,6 +63,11 @@ function App() {
             .post('/auth/register', { username: username, password: password, email: email })
             .then((res) => {
                 console.log(res.data);
+
+                // save userId
+                console.log('saving user id: ' + res.data.user._id);
+                setUserId(res.data.user._id);
+
                 // save to local storage
                 localStorage.setItem('jwt_token', res.data.token);
                 console.log(res.data.status);
@@ -80,6 +88,11 @@ function App() {
             .post('/auth/login', { password: password, email: email })
             .then((res) => {
                 console.log(res.data);
+
+                // save userId
+                console.log('saving user id: ' + res.data.user._id);
+                setUserId(res.data.user._id);
+
                 // save to local storage
                 localStorage.setItem('jwt_token', res.data.token);
                 console.log(res.data.status);
@@ -115,13 +128,13 @@ function App() {
                         </LoginRegisterPage>
                     </Route>
                     <Route exact path="/main">
-                        <MainPage isLoggedIn={isLoggedIn} client={client}></MainPage>
+                        <MainPage isLoggedIn={isLoggedIn} client={client} userId={userId}></MainPage>
                     </Route>
                     <Route exact path="/addissue">
                         <AddIssuePage isLoggedIn={isLoggedIn}></AddIssuePage>
                     </Route>
                     <Route exact path="/myissues">
-                        <MyIssuesPage isLoggedIn={isLoggedIn} client={client}></MyIssuesPage>
+                        <MyIssuesPage isLoggedIn={isLoggedIn} client={client} userId={userId}></MyIssuesPage>
                     </Route>
                 </Switch>
                 {/* </BrowserRouter> */}

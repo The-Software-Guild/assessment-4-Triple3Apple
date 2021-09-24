@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { LOAD_MY_ISSUES } from '../graphql/Queries';
 import IssueContainer from '../components/IssueContainer';
 
-const MyIssuesPage = ({ isLoggedIn, client }) => {
+const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
 
     const { error, loading, data } = useQuery(LOAD_MY_ISSUES);
 
@@ -57,6 +57,7 @@ const MyIssuesPage = ({ isLoggedIn, client }) => {
                             // issuesQuery={LOAD_MY_ISSUES}
                             myIssuesQuery={LOAD_MY_ISSUES}
                             canDelete={true}
+                            userId={userId}
                         // issuesQuery={issuesQuery}
                         ></IssueContainer>
                     })

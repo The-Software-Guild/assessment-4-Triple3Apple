@@ -5,7 +5,7 @@ import { LOAD_ISSUES } from '../graphql/Queries';
 import IssueContainer from '../components/IssueContainer';
 
 // Passed client via props for re-rendering.
-const MainPage = ({ isLoggedIn, issuesData, client }) => {
+const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
 
     const { error, loading, data } = useQuery(LOAD_ISSUES);
 
@@ -58,6 +58,7 @@ const MainPage = ({ isLoggedIn, issuesData, client }) => {
                             comments={issue.comments}
                             issuesQuery={LOAD_ISSUES}
                             canDelete={false}
+                            userId={userId}
                         // issuesQuery={issuesQuery}
                         ></IssueContainer>
                     })
