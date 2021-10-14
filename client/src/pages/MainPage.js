@@ -35,6 +35,7 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
         return (
             <div className="issues-page">
                 <div className="issues-container">
+
                     {data.issues[0] ?
 
                         data.issues.slice(0).reverse().map((issue) => {
@@ -56,13 +57,13 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
 
                         : <h2 className="issues-status">No Climate Issues</h2>}
 
+
                 </div>
 
             </div>
         )
     } else {
         return (<h2>Loading..</h2>)
-
     }
 
 }
