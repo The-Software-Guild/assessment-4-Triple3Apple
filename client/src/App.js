@@ -137,8 +137,33 @@ function App() {
     return (
         <ApolloProvider client={client}>
             <div className="App">
+
                 <NavBar isLoggedIn={isLoggedIn} logOut={logOut}></NavBar>
-                <Switch>
+                <div className="page-content">
+                    <Switch>
+                        <Route exact path="/" >
+                            <LoginRegisterPage
+                                loginUser={loginUser}
+                                registerUser={registerUser}
+                                registerErrorMsg={registerErrorMsg}
+                                loginErrorMsg={loginErrorMsg}
+                            >
+                            </LoginRegisterPage>
+                        </Route>
+                        <Route exact path="/main">
+                            <MainPage isLoggedIn={isLoggedIn} client={client} userId={userId}></MainPage>
+                        </Route>
+                        <Route exact path="/addissue">
+                            <AddIssuePage isLoggedIn={isLoggedIn}></AddIssuePage>
+                        </Route>
+                        <Route exact path="/myissues">
+                            <MyIssuesPage isLoggedIn={isLoggedIn} client={client} userId={userId}></MyIssuesPage>
+                        </Route>
+                    </Switch>
+                    <div className="bg-image"></div>
+                    <div className="bg-green"></div>
+                </div>
+                {/* <Switch>
                     <Route exact path="/" >
                         <LoginRegisterPage
                             loginUser={loginUser}
@@ -157,7 +182,8 @@ function App() {
                     <Route exact path="/myissues">
                         <MyIssuesPage isLoggedIn={isLoggedIn} client={client} userId={userId}></MyIssuesPage>
                     </Route>
-                </Switch>
+                </Switch> */}
+
             </div>
         </ApolloProvider>
     );

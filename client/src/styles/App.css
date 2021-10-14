@@ -1,51 +1,195 @@
-* {
+*,
+:after,
+:before {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
+/* 
+@font-face {
+	font-family: "Patua One";
+	@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+} */
 
 html {
 	font-size: 62.5%;
 	height: 100%;
-	background: green;
+	background: #277553;
+	/* background: #3a6351; */
 }
 
 .App {
+	display: flex;
+	flex-direction: column;
 	text-align: center;
+	height: 100vh;
+}
+
+.page-content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	background: transparent;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	/* 
+	animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards; */
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+/* ------------------- */
+.bg-image {
+	position: absolute;
+	top: 0;
+	z-index: -10;
+	background: linear-gradient(#277553, transparent),
+		url("../assets/img/nature-bg.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	height: 100%;
+	width: 100%;
+	z-index: -2;
+}
+
+.bg-green {
+	position: absolute;
+	top: 0;
+	background: #277553;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+
+	animation: fadeInAnimation ease 2.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
 }
 
 .nav-bar {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	color: black;
 	padding: 2rem;
 	font-size: 1.5rem;
-	background: rgb(144, 144, 144);
+	background: transparent;
 }
 
 .nav-bar > * {
 	margin: 1rem;
 }
 
+.nav-links {
+	display: flex;
+	flex-direction: row;
+}
+
+.link {
+	color: white;
+	margin: 0 3rem;
+	font-family: Roboto, cursive;
+	font-size: 1.8rem;
+	letter-spacing: 0.1rem;
+	text-decoration: none;
+	display: inline-block;
+	/* Below is important for underline effect */
+	position: relative;
+	transition: color 0.25s ease-in-out;
+}
+
+.link:after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 0.2rem;
+	bottom: -0.5rem;
+	left: 0;
+	background-color: #ffffff;
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-in-out;
+}
+
+.link:hover:after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+.log-out:hover {
+	color: #ff7967;
+}
+
+.log-out:hover:after {
+	background-color: #ff7967;
+}
+
+.app-title {
+	color: #ffffff;
+	font-family: "Courgette", cursive;
+	font-size: 3rem;
+	letter-spacing: 0.5rem;
+}
+
+.bird1 {
+	width: 10rem;
+	height: 10rem;
+}
+
 /* Login/register styling */
 .login-register-page {
 	font-family: "Roboto", sans-serif;
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: center;
-	background: green;
+	top: -5%;
+	/* background: green; */
+	/* background: linear-gradient(#277553, transparent),
+		url("../assets/img/nature-bg.png"); */
+	/* background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center; */
+
+	/* animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards; */
+}
+
+/* @keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+} */
+
+.forms {
+	display: flex;
+	flex-direction: row;
 }
 
 .register-form,
 .login-form {
 	height: fit-content;
 	background: #ffffff;
+	/* flex: 1; */
 }
 
 .register-form {
@@ -66,6 +210,7 @@ html {
 	padding: 1rem;
 	box-sizing: border-box;
 	font-size: 14px;
+	border: 1px solid rgb(190, 190, 190);
 }
 
 .login-form {
@@ -226,9 +371,9 @@ button {
 	background: rgb(132, 212, 132);
 }
 
-.login-register-page {
+/* .login-register-page {
 	transform: translateY(20vh);
-}
+} */
 
 .error-text {
 	padding-top: 0.5rem;
