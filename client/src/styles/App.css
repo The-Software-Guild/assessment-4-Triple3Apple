@@ -143,9 +143,70 @@ html {
 	letter-spacing: 0.5rem;
 }
 
+.title-container {
+	position: relative;
+}
+
 .bird1 {
-	width: 10rem;
-	height: 10rem;
+	position: absolute;
+	width: 5rem;
+	height: 5rem;
+	filter: invert();
+	left: 105%;
+	top: -50%;
+
+	animation: bird1Anim 5s infinite alternate cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+@keyframes bird1Anim {
+	from {
+		transform: translateX(-1rem) translateY(-0.5rem) rotate(5deg);
+	}
+	to {
+		transform: translateX(1rem) translateY(1.5rem);
+	}
+}
+
+.bird2 {
+	position: absolute;
+	width: 5rem;
+	height: 5rem;
+	filter: invert();
+	left: 10%;
+	top: 100%;
+	/* transform: rotate(180deg); */
+
+	animation: bird2Anim 4s infinite alternate cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+@keyframes bird2Anim {
+	from {
+		transform: translateX(0rem) translateY(0.5rem) rotate(170deg);
+	}
+	to {
+		transform: translateX(1rem) translateY(1.5rem) rotate(150deg);
+	}
+}
+
+.bird3 {
+	position: absolute;
+	width: 3rem;
+	height: 3rem;
+	filter: invert();
+	left: 40%;
+	bottom: 100%;
+	/* transform: rotate(180deg); */
+
+	animation: bird3Anim 6s infinite alternate cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+@keyframes bird3Anim {
+	from {
+		transform: translateX(-1.5rem) translateY(0.75rem);
+	}
+	to {
+		transform: translateX(-0.25rem) translateY(-0.25rem) rotate(10deg);
+	}
 }
 
 /* Login/register styling */
@@ -277,7 +338,8 @@ html {
 	border: 0;
 	padding: 15px;
 	color: #ffffff;
-	font-size: 14px;
+	font-size: 1.5rem;
+	letter-spacing: 0.1rem;
 	-webkit-transition: all 0.3 ease;
 	transition: all 0.3 ease;
 	cursor: pointer;
@@ -317,13 +379,28 @@ button {
 	margin: 3rem;
 	padding: 2rem;
 	width: 70vw;
+	max-width: 70rem;
 	height: fit-content;
-	background: white;
+	background: rgb(255, 255, 255);
+	border-radius: 1rem;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 .issues-container {
-	background: green;
+}
+
+.issues-status {
+	display: inline-block;
+	background: transparent;
+	margin-top: 5rem;
+	position: relative;
+	top: 50%;
+	background: white;
+	border-radius: 4rem;
+	border: none;
+	padding: 1rem 2rem;
+	font-size: 2rem;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* Vote Container */
@@ -376,7 +453,10 @@ button {
 } */
 
 .error-text {
+	text-align: left;
+	font-family: sans-serif;
 	padding-top: 0.5rem;
+	margin: 1rem;
 	color: red;
-	font-size: 1.75rem;
+	font-size: 1.4rem;
 }

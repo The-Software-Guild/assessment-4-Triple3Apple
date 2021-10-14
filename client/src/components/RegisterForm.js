@@ -20,7 +20,7 @@ const RegisterForm = ({ registerUser, registerErrorMsg }) => {
 
     return (
         <div className="register-form">
-            <h1>Join the Climate Action!</h1>
+            <h1>Join the Climate Action Forum!</h1>
 
             <form id="register-user-form" onSubmit={(e) => handleRegisterUser(e)}>
                 <div className="form-container">

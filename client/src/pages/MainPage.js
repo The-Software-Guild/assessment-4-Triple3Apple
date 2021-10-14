@@ -35,7 +35,8 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
         return (
             <div className="issues-page">
                 <div className="issues-container">
-                    {
+                    {data.issues[0] ?
+
                         data.issues.slice(0).reverse().map((issue) => {
                             return <IssueContainer
                                 title={issue.title}
@@ -51,7 +52,10 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
                                 userId={userId}
                             ></IssueContainer>
                         })
-                    }
+
+
+                        : <h2 className="issues-status">No Climate Issues</h2>}
+
                 </div>
 
             </div>

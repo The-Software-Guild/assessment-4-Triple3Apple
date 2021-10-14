@@ -18,7 +18,7 @@ const LoginForm = ({ loginUser, loginErrorMsg }) => {
 
     return (
         <div className="login-form">
-            <h1>Existing Users</h1>
+            <h1>Sign In</h1>
 
             <form id="register-user-form" onSubmit={(e) => handleLoginUser(e)}>
                 <div className="form-container">

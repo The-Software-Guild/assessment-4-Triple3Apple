@@ -57,7 +57,7 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
                             userId={userId}
                         ></IssueContainer>
                     })
-                    : <h2>No Climate Issues</h2>}
+                    : <h2 className="issues-status">No Climate Issues</h2>}
 
             </div>
         )
