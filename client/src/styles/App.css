@@ -428,24 +428,70 @@ button {
 }
 
 #add-issue-form {
+	position: relative;
+	top: 50%;
+	height: fit-content;
+	background: #ffffff;
+	width: 40vw;
+	/* height: 40vh; */
+	padding: 1rem;
+	margin: 1rem;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#add-issue-form > * {
+	margin: 1rem 1rem;
 }
 
 #add-issue-form h1 {
 	padding: 2rem;
-	color: white;
-}
-
-#add-issue-form input {
-	width: 50rem;
-}
-
-.add-issue-btn {
-	background: lightgreen;
 	color: black;
 }
 
-.add-issue-btn:hover {
-	background: rgb(132, 212, 132);
+#add-issue-form input {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #e9e9e9cc;
+	width: 100%;
+	border: 0;
+	margin: 0 0 1rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	font-size: 14px;
+	border: 1px solid rgb(190, 190, 190);
+}
+
+#add-issue-form textarea {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #e9e9e9cc;
+	width: 100%;
+	border: 0;
+	margin: 0 0 1rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	font-size: 14px;
+	border: 1px solid rgb(190, 190, 190);
+}
+
+#add-issue-form .add-issue-btn {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background-color: #4caf50;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #ffffff;
+	font-size: 1.5rem;
+	letter-spacing: 0.1rem;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+#add-issue-form .add-issue-btn:hover {
+	background-color: #439b46;
 }
 
 /* .login-register-page {

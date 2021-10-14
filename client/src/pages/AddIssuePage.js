@@ -50,7 +50,17 @@ const AddIssuePage = ({ isLoggedIn }) => {
                     />
                 </div>
                 <div className="form-container">
-                    <input
+                    <textarea
+                        type="text"
+                        id="post-details-input"
+                        value={postDetails}
+                        rows='4'
+                        minLength="1"
+                        placeholder="issue info"
+                        required
+                        onChange={(e) => setPostDetails(e.target.value)}
+                    />
+                    {/* <input
                         type="text"
                         id="post-details-input"
                         value={postDetails}
@@ -58,9 +68,12 @@ const AddIssuePage = ({ isLoggedIn }) => {
                         placeholder="issue info"
                         required
                         onChange={(e) => setPostDetails(e.target.value)}
-                    />
+                    /> */}
                 </div>
-                <input className="submit-btn add-issue-btn" type="submit" value="Create Issue" />
+                <div className="btn-container">
+                    <input className="submit-btn add-issue-btn" type="submit" value="Create Issue" />
+                </div>
+
             </form>
         </div>
     )
