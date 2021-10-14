@@ -35,25 +35,29 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
         return (
             <div className="issues-page">
                 <div className="issues-container">
-                    {
-                        data.issues.length > 0 ?
-                            data.issues.slice(0).reverse().map((issue) => {
-                                return <IssueContainer
-                                    title={issue.title}
-                                    authorUsername={issue.author === null ? 'unknown' : issue.author.username}
-                                    body={issue.body}
-                                    id={issue.id}
-                                    upvotes={issue.upvotes}
-                                    downvotes={issue.downvotes}
-                                    usersVoted={issue.usersVoted}
-                                    comments={issue.comments}
-                                    issuesQuery={LOAD_ISSUES}
-                                    canDelete={false}
-                                    userId={userId}
-                                ></IssueContainer>
-                            })
-                            : <h2>No Climate Issues</h2>
-                    }
+
+                    {data.issues[0] ?
+
+                        data.issues.slice(0).reverse().map((issue) => {
+                            return <IssueContainer
+                                title={issue.title}
+                                authorUsername={issue.author === null ? 'unknown' : issue.author.username}
+                                body={issue.body}
+                                id={issue.id}
+                                upvotes={issue.upvotes}
+                                downvotes={issue.downvotes}
+                                usersVoted={issue.usersVoted}
+                                comments={issue.comments}
+                                issuesQuery={LOAD_ISSUES}
+                                canDelete={false}
+                                userId={userId}
+                            ></IssueContainer>
+                        })
+
+
+                        : <h2 className="issues-status">No Climate Issues</h2>}
+
+
                 </div>
 
             </div>
