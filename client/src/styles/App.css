@@ -284,10 +284,52 @@ html {
 }
 
 /* Issue Container Styling */
-.issue-container {
-	background: lightgray;
-	margin: 1.25rem 0rem;
+
+/* issue styling */
+
+.issues-page {
+	display: flex;
+	/* align-items: center; */
+	justify-content: center;
 }
+
+.issues-container {
+}
+
+.issue-container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	align-items: center;
+	margin: 3rem;
+	padding: 2rem;
+	width: 70vw;
+	max-width: 70rem;
+	height: fit-content;
+	background: rgba(191, 200, 197, 0.8);
+	border-radius: 1rem;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.issues-status {
+	display: inline-block;
+	background: transparent;
+	margin-top: 5rem;
+	position: relative;
+	top: 50%;
+	background: white;
+	border-radius: 4rem;
+	border: none;
+	padding: 1rem 2rem;
+	font-size: 2rem;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* 
+.issue-container {
+	background: rgb(255, 0, 0);
+	margin: 1.25rem 0rem;
+} */
 
 .issue-title {
 	font-size: 2rem;
@@ -349,58 +391,100 @@ html {
 	background-color: #439b46;
 }
 
-.comment {
-	margin: 0.5rem;
-	padding: 0.5rem;
-	background: rgb(195, 195, 195);
-}
-
 button {
 	cursor: pointer;
 }
 
+.comments {
+	position: relative;
+	text-align: left;
+	width: 100%;
+}
+
+.comments::after {
+	content: "";
+	position: absolute;
+	width: calc(100% - 1rem);
+	height: 0.2rem;
+	top: -0.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+	/* margin-left: 05%; */
+	background-color: rgb(54, 54, 54);
+}
+
+.comments h3 {
+	margin: 0.5rem 0.5rem 0.8rem;
+	font-size: 1.3rem;
+}
+.comment {
+	position: relative;
+	border-radius: 1rem;
+	margin: 0.5rem;
+	padding: 1rem;
+	background: rgb(54, 54, 54);
+}
+
+.comment-username {
+	font-size: 1.2rem;
+	/* letter-spacing: 0.05rem; */
+	color: #ffffff;
+}
+
+.comment-text {
+	font-size: 1.5rem;
+	color: #ffffff;
+	letter-spacing: 0.05rem;
+}
+
 .add-comment-form {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	height: 5rem;
+	text-align: left;
 	margin: 5rem, 0.75rem;
 }
 
-/* issue styling */
-
-.issues-page {
-	display: flex;
-	/* align-items: center; */
-	justify-content: center;
+.add-comment-form > * {
+	margin: 0.5rem;
 }
 
-.issue-container {
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	align-items: center;
-	margin: 3rem;
-	padding: 2rem;
-	width: 70vw;
-	max-width: 70rem;
-	height: fit-content;
-	background: rgb(255, 255, 255);
-	border-radius: 1rem;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+.add-comment-input {
+	padding: 1.25rem 1.25rem;
+	width: 100%;
+	border-radius: 2rem;
+	border: red;
+	background: rgb(54, 54, 54);
+	color: #ffffff;
 }
 
-.issues-container {
+.add-comment-input::placeholder {
+	color: lightgray;
 }
 
-.issues-status {
-	display: inline-block;
-	background: transparent;
-	margin-top: 5rem;
-	position: relative;
-	top: 50%;
-	background: white;
-	border-radius: 4rem;
+.add-comment-input:focus {
+	outline: none;
+}
+
+.add-comment-btn {
+	border-radius: 0.25rem;
+	background-color: rgb(54, 54, 54);
+	color: rgb(206, 206, 206);
 	border: none;
-	padding: 1rem 2rem;
-	font-size: 2rem;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.3);
+	letter-spacing: 0.1rem;
+	text-align: center;
+	font-size: 1.25rem;
+	padding: 0.2rem 1.25rem;
+	transition: all 0.2s ease;
+	height: 3.5rem;
+	/* Below line centers btn text vertically (only works for btn with one line). */
+	line-height: 3.5rem;
+}
+
+.add-comment-btn:hover {
+	background-color: green;
+	color: rgb(255, 255, 255);
 }
 
 /* Vote Container */
@@ -408,6 +492,7 @@ button {
 .votes-container {
 	display: flex;
 	flex-direction: row;
+	margin-bottom: 1rem;
 }
 
 .upvotes-container,

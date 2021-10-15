@@ -18,10 +18,10 @@ const AddCommentForm = ({ issueId, addComment }) => {
 
     return (
         <div className="add-comment-form">
-            <input className='add-comment-input' type="text" name="add-comment" value={comment} id="add-comment" onChange={(e) => {
+            <input className='add-comment-input' placeholder="Write a comment..." type="text" name="add-comment" value={comment} id="add-comment" onChange={(e) => {
                 setComment(e.target.value)
             }} />
-            <button onClick={() => handleAddComment()}>Add Comment</button>
+            <button className="add-comment-btn" onClick={() => handleAddComment()}>COMMENT</button>
         </div>
     )
 }

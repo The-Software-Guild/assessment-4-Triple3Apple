@@ -63,7 +63,7 @@ const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, u
                     usersVoted={usersVoted}
                     userId={userId}
                     issuesQuery={myIssuesQuery} />}
-            <AddCommentForm issueId={id} addComment={createComment}></AddCommentForm>
+
             <div className="comments">
                 {comments.length > 0 && <h3>Comments</h3>}
 
@@ -75,6 +75,7 @@ const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, u
                     )
                 })}
             </div>
+            <AddCommentForm issueId={id} addComment={createComment}></AddCommentForm>
 
         </div>
     )
