@@ -6,8 +6,20 @@ import VoteContainer from './VoteContainer';
 import { useMutation } from '@apollo/client';
 import { CREATE_COMMENT } from '../graphql/Mutations';
 
+import getPostPicName from '../utils/postPics';
+import pic1 from '../assets/img/post_pics/post_pic_chain.png';
+import pic2 from '../assets/img/post_pics/post_pic_fire.png';
+import pic3 from '../assets/img/post_pics/post_pic_litter.png';
+import pic4 from '../assets/img/post_pics/post_pic_pollution.png';
+import pic5 from '../assets/img/post_pics/post_pic_trash1.png';
+import pic6 from '../assets/img/post_pics/post_pic_trash2.png';
+import pic7 from '../assets/img/post_pics/post_pic_warning.png';
 
-const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, usersVoted, comments, issuesQuery, myIssuesQuery, userId, canDelete }) => {
+
+const imageArray = [pic1, pic2, pic3, pic4, pic5, pic6, pic7];
+
+
+const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, usersVoted, comments, issuesQuery, myIssuesQuery, userId, canDelete, postNumber }) => {
 
     const [addComment, { data, loading, error }] = useMutation(CREATE_COMMENT);
 
@@ -27,8 +39,28 @@ const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, u
 
     }
 
+    /**
+ * Gets the picture file name using post number
+ * @param {Number} postNum Number representing post number
+ * @returns picture file name
+ */
+    const getPostPicName = (postNum) => {
+
+        while (postNum >= imageArray.length) {
+            postNum = postNum - imageArray.length;
+        }
+
+        if (postNum < 0) {
+            console.warn(`Received negative post number: ${postNum}`)
+            return imageArray[0];
+        }
+
+        return imageArray[postNum];
+    }
+
     return (
         <div className="issue-container">
+            <img className="post-pic" src={getPostPicName(postNumber)} alt="post pic" />
             <div className="title-container">
                 <div className="issue-title-container">
                     <h3 className="issue-title">{title}</h3>
@@ -42,8 +74,8 @@ const IssueContainer = ({ title, authorUsername, body, id, upvotes, downvotes, u
                 </div>
             </div>
 
-            <h5 className="issue-author">By: {authorUsername}</h5>
             <h5 className="issue-body">{body}</h5>
+            <h5 className="issue-author">Report by {authorUsername}</h5>
             {canDelete === true ? <VoteContainer
                 issueId={id}
                 upvotes={upvotes}
