@@ -109,7 +109,6 @@ const MainPage = ({ isLoggedIn, issuesData, client, userId }) => {
         )
     } else {
         return (<h2>Loading..</h2>)
-
     }
 
     if (data) {
