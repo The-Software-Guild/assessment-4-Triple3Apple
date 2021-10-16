@@ -13,7 +13,7 @@
 #### Login Page: 
 Uses JWT to authenticate users and bcrypt to encrypt user data on a database.
 Users can login or register a new account on this page.
-![image](https://user-images.githubusercontent.com/43301530/135486409-ab1f7ed6-9142-4647-9722-0b8fb188c7f8.png)
+![image](https://user-images.githubusercontent.com/43301530/137573528-5e7e86f8-26d1-4a71-aa16-58428c4d66a3.png)
 
 #### View Posts
 User can view posts made by the current user and as well as other users.
