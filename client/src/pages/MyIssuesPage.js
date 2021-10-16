@@ -4,6 +4,9 @@ import { useQuery } from '@apollo/client';
 import { LOAD_MY_ISSUES } from '../graphql/Queries';
 import IssueContainer from '../components/IssueContainer';
 
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
+
 const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
 
     const { error, loading, data } = useQuery(LOAD_MY_ISSUES);
@@ -16,7 +19,7 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
         if (data) {
             console.log(data);
         }
-    })
+    });
 
     useEffect(() => {
         console.log('on my issues page');
@@ -39,25 +42,29 @@ const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
     }
 
     if (data) {
+        let postIndex = 0;
         return (
             <div className="issues-page">
-                {data.issuesByUser.length > 0 ?
-                    data.issuesByUser.slice(0).reverse().map((issue) => {
-                        return <IssueContainer
-                            title={issue.title}
-                            authorUsername={issue.author === null ? 'unknown' : issue.author.username}
-                            body={issue.body}
-                            id={issue.id}
-                            upvotes={issue.upvotes}
-                            downvotes={issue.downvotes}
-                            usersVoted={issue.usersVoted}
-                            comments={issue.comments}
-                            myIssuesQuery={LOAD_MY_ISSUES}
-                            canDelete={true}
-                            userId={userId}
-                        ></IssueContainer>
-                    })
-                    : <h2 className="issues-status">No Climate Issues</h2>}
+                {
+                    data.issuesByUser.length > 0 ?
+                        data.issuesByUser.slice(0).reverse().map((issue) => {
+                            return <IssueContainer
+                                title={issue.title}
+                                authorUsername={issue.author === null ? 'unknown' : issue.author.username}
+                                body={issue.body}
+                                id={issue.id}
+                                upvotes={issue.upvotes}
+                                downvotes={issue.downvotes}
+                                usersVoted={issue.usersVoted}
+                                comments={issue.comments}
+                                myIssuesQuery={LOAD_MY_ISSUES}
+                                canDelete={true}
+                                userId={userId}
+                                postNumber={postIndex++}
+                            ></IssueContainer>
+                        })
+                        : <h2 className="issues-status">No Climate Issues</h2>
+                }
 
             </div>
         )
