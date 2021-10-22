@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { IoMdMenu } from 'react-icons/io';
 import { AiOutlineClose } from 'react-icons/ai';
 import MobileNavLinks from './MobileNavLinks';
@@ -8,6 +8,14 @@ import MobileNavLinks from './MobileNavLinks';
 const MobileNav = ({ logOut }) => {
 
     const [hamburgerOpen, setBurgerOpen] = useState(false);
+
+    // hook from react-router
+    const location = useLocation();
+
+    // Makes hamburger menu close when routed to different page.
+    useEffect(() => {
+        setBurgerOpen(false);
+    }, [location]);
 
     const hamburgerIcon =
         <IoMdMenu className="hamburger no-highlight" size='50px'
@@ -28,14 +36,8 @@ const MobileNav = ({ logOut }) => {
         <div className="mobile-nav-links ">
             {hamburgerOpen ? closeIcon : hamburgerIcon}
 
-            {/* <IoMdMenu className="hamburger no-highlight" size='50px'
-                onClick={() => toggleHamburger()}
-            /> */}
             {hamburgerOpen && <MobileNavLinks logOut={logOut} />}
-            {/* <Link className="link" to="/main">View Issues</Link>
-            <Link className="link" to="/addissue">Add Issue</Link>
-            <Link className="link" to="/myissues">My Issues</Link>
-            <Link className="link log-out" onClick={() => logOut()} to="/">Log out</Link> */}
+
         </div>
     )
 }
