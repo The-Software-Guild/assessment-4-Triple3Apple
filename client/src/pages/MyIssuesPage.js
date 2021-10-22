@@ -4,9 +4,6 @@ import { useQuery } from '@apollo/client';
 import { LOAD_MY_ISSUES } from '../graphql/Queries';
 import IssueContainer from '../components/IssueContainer';
 
-import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
-
 const MyIssuesPage = ({ isLoggedIn, client, userId }) => {
 
     const { error, loading, data } = useQuery(LOAD_MY_ISSUES);
