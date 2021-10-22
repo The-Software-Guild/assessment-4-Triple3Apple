@@ -96,9 +96,14 @@ html {
 	margin: 1rem;
 }
 
-.nav-links {
+.nav-links,
+.mobile-nav-links {
 	display: flex;
 	flex-direction: row;
+}
+
+.mobile-nav-links {
+	display: none;
 }
 
 .link {
@@ -139,6 +144,67 @@ html {
 .log-out:hover:after {
 	background-color: #ff7967;
 }
+
+/* Mobile Hamburger Nav */
+
+@media (max-width: 1100px) {
+	.nav-links {
+		display: none;
+	}
+
+	.mobile-nav-links {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		top: 0rem;
+		right: 0;
+		background-color: red;
+		width: 20rem;
+		margin: 0;
+		z-index: 9;
+	}
+
+	.mobile-links {
+		position: absolute;
+		background-color: #6ac06bdc;
+		top: 10rem;
+	}
+
+	.mobile-links .link {
+		padding: 1rem 0;
+	}
+
+	.mobile-nav-links .hamburger {
+		position: absolute;
+		right: 5rem;
+		top: 5rem;
+		background: #6ac06bdc;
+		border-radius: 0.75rem;
+		padding: 0.5rem;
+		color: rgb(255, 255, 255);
+		cursor: pointer;
+		z-index: 10;
+	}
+
+	.mobile-nav-links .hamburger.close-icon {
+		border-radius: 0.75rem 0.75rem 0 0;
+	}
+
+	.link:after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		transform: scaleX(0);
+		height: 0.2rem;
+		bottom: 0.5rem;
+		left: 0;
+		background-color: #ffffff;
+		transform-origin: bottom right;
+		transition: transform 0.25s ease-in-out;
+	}
+}
+
+/* */
 
 .app-title {
 	color: #ffffff;
@@ -647,4 +713,11 @@ button {
 	margin: 1rem;
 	color: red;
 	font-size: 1.4rem;
+}
+
+.no-highlight {
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 }
