@@ -1,0 +1,723 @@
+*,
+:after,
+:before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+/* 
+@font-face {
+	font-family: "Patua One";
+	@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+} */
+
+html {
+	font-size: 62.5%;
+	height: 100%;
+	background: #277553;
+	/* overflow-y: scroll; */
+	/* background: #3a6351; */
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	height: 100vh;
+}
+
+.page-content {
+	/* height: 100%; */
+	flex: 1 1 auto;
+	height: calc(100vh - 10rem);
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	background: transparent;
+
+	/* background-repeat: repeat;
+	background-size: cover;
+	background-position: center; */
+	/* 
+	animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards; */
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+/* ------------------- */
+.bg-image {
+	position: fixed;
+	top: 0;
+	z-index: -10;
+	background: linear-gradient(#277553, transparent),
+		url("../assets/img/nature-bg.png");
+	background-repeat: repeat-y;
+	background-size: cover;
+	background-position: center;
+	height: 100%;
+	width: 100%;
+}
+
+.bg-green {
+	position: absolute;
+	top: 0;
+	background: #277553;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+
+	animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+.nav-bar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	color: black;
+	padding: 2rem;
+	font-size: 1.5rem;
+	background: transparent;
+	min-height: 9rem;
+	flex: 0 1 auto;
+}
+
+.nav-bar > * {
+	margin: 1rem;
+}
+
+.nav-links,
+.mobile-nav-links {
+	display: flex;
+	flex-direction: row;
+}
+
+.mobile-nav-links {
+	display: none;
+}
+
+.link {
+	color: white;
+	margin: 0 3rem;
+	font-family: Roboto, cursive;
+	font-size: 1.8rem;
+	letter-spacing: 0.1rem;
+	text-decoration: none;
+	display: inline-block;
+	/* Below is important for underline effect */
+	position: relative;
+	transition: color 0.25s ease-in-out;
+}
+
+.link:after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 0.2rem;
+	bottom: -0.5rem;
+	left: 0;
+	background-color: #ffffff;
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-in-out;
+}
+
+.link:hover:after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+.log-out:hover {
+	color: #ff7967;
+}
+
+.log-out:hover:after {
+	background-color: #ff7967;
+}
+
+/* Mobile Hamburger Nav */
+
+@media (max-width: 1100px) {
+	.nav-links {
+		display: none;
+	}
+
+	.mobile-nav-links {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		top: 0rem;
+		right: 0;
+		background-color: red;
+		width: 20rem;
+		margin: 0;
+		z-index: 9;
+	}
+
+	.mobile-links {
+		position: absolute;
+		background-color: #6ac06bdc;
+		top: 10rem;
+	}
+
+	.mobile-links .link {
+		padding: 1rem 0;
+	}
+
+	.mobile-nav-links .hamburger {
+		position: absolute;
+		right: 5rem;
+		top: 5rem;
+		background: #6ac06bdc;
+		border-radius: 0.75rem;
+		padding: 0.5rem;
+		color: rgb(255, 255, 255);
+		cursor: pointer;
+		z-index: 10;
+	}
+
+	.mobile-nav-links .hamburger.close-icon {
+		border-radius: 0.75rem 0.75rem 0 0;
+	}
+
+	.link:after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		transform: scaleX(0);
+		height: 0.2rem;
+		bottom: 0.5rem;
+		left: 0;
+		background-color: #ffffff;
+		transform-origin: bottom right;
+		transition: transform 0.25s ease-in-out;
+	}
+}
+
+/* */
+
+.app-title {
+	color: #ffffff;
+	font-family: "Courgette", cursive;
+	font-size: 3rem;
+	letter-spacing: 0.5rem;
+}
+
+.title-container {
+	position: relative;
+}
+
+.bird1 {
+	position: absolute;
+	width: 5rem;
+	height: 5rem;
+	filter: invert();
+	left: 105%;
+	top: -50%;
+	z-index: 10;
+
+	animation: bird1Anim 5s infinite alternate cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+@keyframes bird1Anim {
+	from {
+		transform: translateX(-1rem) translateY(-0.5rem) rotate(5deg);
+	}
+	to {
+		transform: translateX(1rem) translateY(1.5rem);
+	}
+}
+
+.bird2 {
+	position: absolute;
+	width: 5rem;
+	height: 5rem;
+	filter: invert();
+	left: 10%;
+	top: 100%;
+	/* transform: rotate(180deg); */
+	z-index: 10;
+
+	animation: bird2Anim 4s infinite alternate cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+@keyframes bird2Anim {
+	from {
+		transform: translateX(0rem) translateY(0.5rem) rotate(170deg);
+	}
+	to {
+		transform: translateX(1rem) translateY(1.5rem) rotate(150deg);
+	}
+}
+
+.bird3 {
+	position: absolute;
+	width: 3rem;
+	height: 3rem;
+	filter: invert();
+	left: 40%;
+	bottom: 100%;
+	/* transform: rotate(180deg); */
+	z-index: 10;
+
+	animation: bird3Anim 6s infinite alternate cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+@keyframes bird3Anim {
+	from {
+		transform: translateX(-1.5rem) translateY(0.75rem);
+	}
+	to {
+		transform: translateX(-0.25rem) translateY(-0.25rem) rotate(10deg);
+	}
+}
+
+/* Login/register styling */
+.login-register-page {
+	font-family: "Roboto", sans-serif;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	top: -5%;
+	/* background: green; */
+	/* background: linear-gradient(#277553, transparent),
+		url("../assets/img/nature-bg.png"); */
+	/* background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center; */
+
+	/* animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards; */
+}
+
+/* @keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+} */
+
+.forms {
+	display: flex;
+	flex-direction: row;
+}
+
+.register-form,
+.login-form {
+	height: fit-content;
+	background: #ffffff;
+	/* flex: 1; */
+}
+
+.register-form {
+	width: 40vw;
+	min-width: 30rem;
+	max-width: 60rem;
+	/* height: 40vh; */
+	padding: 1rem;
+	margin: 1rem;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form-container input {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #e9e9e9cc;
+	width: 100%;
+	border: 0;
+	margin: 0 0 1rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	font-size: 14px;
+	border: 1px solid rgb(190, 190, 190);
+}
+
+.login-form {
+	top: 50%;
+	width: 40vw;
+	min-width: 30rem;
+	max-width: 60rem;
+	/* height: 40vh; */
+	padding: 1rem;
+	margin: 1rem;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+/* Issue Container Styling */
+
+/* issue styling */
+
+.issues-page {
+	display: flex;
+	/* align-items: center; */
+	justify-content: center;
+}
+
+/*
+.scroll-container {
+    height: 100%;
+    background: grey;
+}
+*/
+
+.issues-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.scroll-container {
+	height: 100%;
+	background: grey;
+}
+
+.issue-container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	/* margin: 3rem; */
+	margin: 3rem;
+	padding: 2rem;
+	width: 70vw;
+	max-width: 70rem;
+	height: fit-content;
+	background-image: linear-gradient(
+		180deg,
+		rgb(255, 255, 247) 0%,
+		rgba(245, 245, 220, 0.9) 70%,
+		rgba(245, 245, 220, 0.5) 100%
+	);
+	border-radius: 1rem;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.issues-status {
+	display: inline-block;
+	background: transparent;
+	margin-top: 5rem;
+	position: relative;
+	top: 50%;
+	background: white;
+	border-radius: 4rem;
+	border: none;
+	/* padding: 1rem 2rem; */
+	padding: 0rem 2rem;
+	font-size: 2rem;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* 
+.issue-container {
+	background: rgb(255, 0, 0);
+	margin: 1.25rem 0rem;
+} */
+
+.post-pic {
+	width: 100%;
+	height: 30rem;
+	border-radius: 0.5rem;
+	object-fit: cover;
+}
+
+.issue-title-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.issue-title {
+	font-size: 2.5rem;
+	padding: 1.5rem 0.5rem 0rem;
+	letter-spacing: 0.1rem;
+	align-self: flex-end;
+	font-family: "Roboto Slab", serif;
+	color: #7bb14f;
+	font-weight: bold;
+}
+
+.issue-body {
+	padding: 0.75rem 0.5rem;
+	font-size: 1.5rem;
+	text-align: left;
+	font-family: "Roboto Slab", serif;
+	font-weight: 500;
+}
+
+.issue-author {
+	padding: 0.75rem 0.5rem;
+	text-align: left;
+	font-size: 1.25rem;
+	color: black;
+	font-family: "Roboto Slab", serif;
+	font-weight: 500;
+}
+
+/* Login / register form  */
+
+.register-form h1 {
+	font-size: 2.5rem;
+}
+.login-form h1 {
+	font-size: 2.5rem;
+}
+
+.register-form > * {
+	margin: 1rem 0rem;
+}
+
+.login-form > * {
+	margin: 1rem 0rem;
+}
+
+.form-container {
+	margin: 1rem;
+	font-size: 1.5rem;
+}
+
+.btn-container {
+	margin: 1rem;
+}
+
+.submit-btn {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background-color: #4caf50;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #ffffff;
+	font-size: 1.5rem;
+	letter-spacing: 0.1rem;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.submit-btn:hover {
+	background-color: #439b46;
+}
+
+button {
+	cursor: pointer;
+}
+
+.comments {
+	position: relative;
+	text-align: left;
+	width: 100%;
+}
+
+.comments::after {
+	content: "";
+	position: absolute;
+	width: calc(100% - 1rem);
+	height: 0.2rem;
+	top: -0.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+	/* margin-left: 05%; */
+	background-color: rgb(54, 54, 54);
+}
+
+.comments h3 {
+	margin: 0.5rem 0.5rem 0.8rem;
+	font-size: 1.3rem;
+}
+.comment {
+	position: relative;
+	border-radius: 1rem;
+	margin: 0.5rem;
+	padding: 1rem;
+	background: rgb(54, 54, 54);
+}
+
+.comment-username {
+	font-size: 1.2rem;
+	/* letter-spacing: 0.05rem; */
+	color: #ffffff;
+}
+
+.comment-text {
+	font-size: 1.5rem;
+	color: #ffffff;
+	letter-spacing: 0.05rem;
+}
+
+.add-comment-form {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	height: 5rem;
+	text-align: left;
+	margin: 5rem, 0.75rem;
+}
+
+.add-comment-form > * {
+	margin: 0.5rem;
+}
+
+.add-comment-input {
+	padding: 1.25rem 1.25rem;
+	width: 100%;
+	border-radius: 2rem;
+	border: red;
+	background: rgb(54, 54, 54);
+	color: #ffffff;
+}
+
+.add-comment-input::placeholder {
+	color: lightgray;
+}
+
+.add-comment-input:focus {
+	outline: none;
+}
+
+.add-comment-btn {
+	border-radius: 0.25rem;
+	background-color: rgb(54, 54, 54);
+	color: rgb(206, 206, 206);
+	border: none;
+	letter-spacing: 0.1rem;
+	text-align: center;
+	font-size: 1.25rem;
+	padding: 0.2rem 1.25rem;
+	transition: all 0.2s ease;
+	height: 3.5rem;
+	/* Below line centers btn text vertically (only works for btn with one line). */
+	line-height: 3.5rem;
+}
+
+.add-comment-btn:hover {
+	background-color: green;
+	color: rgb(255, 255, 255);
+}
+
+/* Vote Container */
+
+.votes-container {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 1rem;
+}
+
+.upvotes-container,
+.downvotes-container {
+	margin: 0.5rem;
+}
+
+.add-issue-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#add-issue-form {
+	position: relative;
+	top: 50%;
+	height: fit-content;
+	background: #ffffff;
+	width: 40vw;
+	/* height: 40vh; */
+	padding: 1rem;
+	margin: 1rem;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#add-issue-form > * {
+	margin: 1rem 1rem;
+}
+
+#add-issue-form h1 {
+	padding: 2rem;
+	color: black;
+}
+
+#add-issue-form input {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #e9e9e9cc;
+	width: 100%;
+	border: 0;
+	margin: 0 0 1rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	font-size: 14px;
+	border: 1px solid rgb(190, 190, 190);
+}
+
+#add-issue-form textarea {
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #e9e9e9cc;
+	width: 100%;
+	border: 0;
+	margin: 0 0 1rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	font-size: 14px;
+	border: 1px solid rgb(190, 190, 190);
+}
+
+#add-issue-form .add-issue-btn {
+	font-family: "Roboto", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background-color: #4caf50;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #ffffff;
+	font-size: 1.5rem;
+	letter-spacing: 0.1rem;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+#add-issue-form .add-issue-btn:hover {
+	background-color: #439b46;
+}
+
+/* .login-register-page {
+	transform: translateY(20vh);
+} */
+
+.error-text {
+	text-align: left;
+	font-family: sans-serif;
+	padding-top: 0.5rem;
+	margin: 1rem;
+	color: red;
+	font-size: 1.4rem;
+}
+
+.no-highlight {
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
